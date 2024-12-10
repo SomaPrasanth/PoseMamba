@@ -70,8 +70,7 @@ We provide [checkpoint](https://drive.google.com/file/d/1WFRAeal8W6ntrTPNrf-SNyw
 | Method      | frames          | Params | MACs | Human3.6M weights                                            |      |
 | ----------- | --------------- | ------ | ---- | ------------------------------------------------------------ | ---- |
 | PoseMamba-S | 243 \| 81 \| 27 | 4.8M   | 6.6G | [PoseMamba-S](https://drive.google.com/file/d/1LZtEjeiAIx6LXFmjoyKKzbaCPV3R1-P7/view?usp=sharing) |      |
-
-| PoseMamba-B  | 243 \| 81 |  11.7M  | 48.3G  |    [PoseMamba-B](https://drive.google.com/file/d/1aP6WAq5fKNIqyYcI_ZnYbuagR3_zVik2/view?usp=sharing)   
+| PoseMamba-B  | 243 \| 81 |  11.7M  | 48.3G  |    [PoseMamba-B](https://drive.google.com/file/d/1aP6WAq5fKNIqyYcI_ZnYbuagR3_zVik2/view?usp=sharing)  | 
 | PoseMamba-L  | 243 \| 81 |  19.0M  | 78.3G  |    [PoseMamba-L](https://drive.google.com/file/d/16_Tg0Aqzgih243_dflyFv0UB79gU9u8q/view?usp=sharing)   |       
 
 After downloading the weight, you can evaluate Human3.6M models by:
