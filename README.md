@@ -3,7 +3,7 @@
 <a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a>
 [![arXiv](https://img.shields.io/badge/arXiv-2408.03540-b31b1b.svg)](https://arxiv.org/abs/2408.03540)
 
-This is the official PyTorch implementation of the paper *"[PoseMamba: Monocular 3D Human Pose Estimation with Bidirectional
+This is the official PyTorch implementation of our AAAI 2025 paper *"[PoseMamba: Monocular 3D Human Pose Estimation with Bidirectional
 Spatio-Temporal State Space Model](https://arxiv.org/pdf/2408.03540)"*.
 
 ## Environment
