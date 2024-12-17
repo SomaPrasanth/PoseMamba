@@ -4,7 +4,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2408.03540-b31b1b.svg)](https://arxiv.org/abs/2408.03540)
 
 This is the official PyTorch implementation of our AAAI 2025 paper *"[PoseMamba: Monocular 3D Human Pose Estimation with Bidirectional
-Spatio-Temporal State Space Model](https://arxiv.org/pdf/2408.03540)"*.
+Spatio-Temporal State Space Model](https://arxiv.org/pdf/2408.03540v2)"*.
 
 ## Environment
 
