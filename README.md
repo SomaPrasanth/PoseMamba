@@ -98,7 +98,7 @@ python vis.py --video sample_video.mp4 --gpu 0
 Sample demo output:
 
 <p align="center">
-<img src='demo/output/sample_video/sample_video.gif' width="60%" alt="no img" />
+<img src='sample_video.gif' width="60%" alt="no img" />
 </p>
 
 
