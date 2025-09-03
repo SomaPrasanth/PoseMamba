@@ -217,7 +217,6 @@ def get_pose3D(args, video_path, output_dir):
     print('Loading checkpoint', args.evaluate)
     # This is the corrected line
     checkpoint = torch.load(args.evaluate, map_location=lambda storage, loc: storage, weights_only=False)
-    print(checkpoint['model_pos'])    
     model_backbone.load_state_dict(checkpoint['model_pos'], strict=True)
     model = model_backbone
     model.eval()
@@ -258,7 +257,7 @@ def get_pose3D(args, video_path, output_dir):
     for idx, clip in enumerate(clips):
         input_2D = normalize_screen_coordinates(clip, w=img_size[1], h=img_size[0]) 
         input_2D_aug = flip_data(input_2D)
-        
+        device = torch.device('cpu')
         input_2D = torch.from_numpy(input_2D.astype('float32')).cuda()
         input_2D_aug = torch.from_numpy(input_2D_aug.astype('float32')).cuda()
         if config.no_conf:
