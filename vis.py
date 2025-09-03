@@ -1,7 +1,7 @@
 import sys
 import argparse
 import cv2
-from demo.lib.preprocess import h36m_coco_format, revise_kpts
+from demo.lib.preprocess import h36m_coco_format
 from demo.lib.hrnet.gen_kpts import gen_video_kpts as hrnet_pose
 import os 
 import numpy as np
@@ -12,6 +12,7 @@ from tqdm import tqdm
 import copy
 sys.path.append(os.getcwd())
 from demo.lib.utils import normalize_screen_coordinates, camera_to_world
+from demo.lib.utils import *
 from lib.utils.tools import *
 from lib.utils.learning import *
 import matplotlib
@@ -214,12 +215,15 @@ def get_pose3D(args, video_path, output_dir):
         model_backbone = model_backbone.cuda()
 
     print('Loading checkpoint', args.evaluate)
-    checkpoint = torch.load(args.evaluate, map_location=lambda storage, loc: storage)
+    # This is the corrected line
+    checkpoint = torch.load(args.evaluate, map_location=lambda storage, loc: storage, weights_only=False)
+    print(checkpoint['model_pos'])    
     model_backbone.load_state_dict(checkpoint['model_pos'], strict=True)
     model = model_backbone
     model.eval()
 
     ## input
+    
     keypoints = np.load(output_dir + 'input_2D/keypoints.npz', allow_pickle=True)['reconstruction']
     # keypoints = np.load('demo/lakeside3.npy')
     # keypoints = keypoints[:240]
@@ -334,8 +338,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--video', type=str, default='sample_video.mp4', help='input video')
     parser.add_argument('--gpu', type=str, default='0', help='input video')
-    parser.add_argument("--config", type=str, default="checkpoint/pose3d/PoseMamba_L/config.yaml", help="Path to the config file.")
-    parser.add_argument('-e', '--evaluate', default='checkpoint/pose3d/PoseMamba_L/best_epoch.bin', type=str, metavar='FILENAME', help='checkpoint to evaluate (file name)')
+    # These are the CORRECT lines for the demo
+    # parser.add_argument("--config", type=str, default="configs/h36m/PoseMamba-base.yaml", help="Path to the config file.")
+    # parser.add_argument('-e', '--evaluate', default='checkpoint/PoseMamba-B.pth.tr', type=str, metavar='FILENAME', help='checkpoint to evaluate (file name)')
+    parser.add_argument("--config", type=str, default="configs/pose3d/PoseMamba_train_h36m_B.yaml", help="Path to the config file.")
+    parser.add_argument('-e', '--evaluate', default='checkpoint/PoseMamba_B.bin', type=str, metavar='FILENAME', help='checkpoint to evaluate (file name)')
     parser.add_argument('-o', '--out_path', type=str, help='output path')
     parser.add_argument('--pixel', action='store_true', help='align with pixle coordinates')
     parser.add_argument('--focus', type=int, default=None, help='target person id')
@@ -345,6 +352,7 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
     video_path = './demo/video/' + args.video
+      
     video_name = video_path.split('/')[-1].split('.')[0]
     output_dir = './demo/output/' + video_name + '/'
     get_pose2D(video_path, output_dir)
